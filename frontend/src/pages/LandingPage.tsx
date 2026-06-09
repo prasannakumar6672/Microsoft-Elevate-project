@@ -1,14 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+    Shield,
+    Skull,
+    Car,
+    IndianRupee,
+    Clock,
+    Hospital,
+    Baby,
+    Camera,
+    Cpu,
+    MapPin,
+    CheckCircle2,
+    Quote,
+    ArrowRight,
+    AlertTriangle,
+    Search,
+    Check
+} from 'lucide-react';
 
 // ── Road images from Unsplash (free hotlink for demos) ──────────
 const SLIDES = [
     {
-        url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=90',
+        url: 'https://images.unsplash.com/photo-1594913785162-e6785b42fbb1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=90',
         caption: 'Every pothole is a life at risk.',
     },
     {
-        url: 'https://images.unsplash.com/photo-1611348586804-61bf6c080437?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=90',
+        url: 'https://images.unsplash.com/photo-1515162305285-0293e4767cc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=90',
         caption: '40% of road accidents start with broken infrastructure.',
     },
     {
@@ -16,14 +34,14 @@ const SLIDES = [
         caption: 'Our roads tell the story of our governance.',
     },
     {
-        url: 'https://images.unsplash.com/photo-1504376379689-8d54347b26c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=90',
+        url: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=90',
         caption: 'One report. One step toward change.',
     },
 ];
 
 const IMPACTS = [
     {
-        icon: '💀',
+        icon: 'skull',
         stat: '1.5 Lakh+',
         title: 'Deaths Per Year',
         desc: 'Road accidents claim over 1.5 lakh lives annually in India. A staggering 40% are directly linked to poor road conditions like potholes, uneven surfaces, and missing guardrails.',
@@ -31,7 +49,7 @@ const IMPACTS = [
         bg: '#FEF2F2',
     },
     {
-        icon: '🚗',
+        icon: 'car',
         stat: '3 Crore+',
         title: 'Vehicle Damages Yearly',
         desc: 'Potholes and broken roads cause severe vehicle damage — blown tyres, broken suspensions, misaligned wheels — costing citizens billions in repairs every single year.',
@@ -39,7 +57,7 @@ const IMPACTS = [
         bg: '#FFFBEB',
     },
     {
-        icon: '💰',
+        icon: 'rupee',
         stat: '₹30,000 Cr',
         title: 'Annual Economic Loss',
         desc: 'Poor roads cost India ₹30,000 crore annually through fuel inefficiency, increased travel time, vehicle damage, and reduced productivity. Every broken road is a broken economy.',
@@ -47,7 +65,7 @@ const IMPACTS = [
         bg: '#FEF2F2',
     },
     {
-        icon: '⏱️',
+        icon: 'clock',
         stat: '72 Hours',
         title: 'Avg. Response Without Tech',
         desc: 'Without systems like RoadGuard AI, road complaints take an average of 72 hours just to reach the right officer — by then, accidents may have already happened.',
@@ -55,7 +73,7 @@ const IMPACTS = [
         bg: '#F5F3FF',
     },
     {
-        icon: '🏥',
+        icon: 'hospital',
         stat: '50%',
         title: 'Preventable Injuries',
         desc: 'Half of all road-injury hospital admissions in India could be prevented with timely infrastructure repairs. The solution starts with a simple report.',
@@ -63,7 +81,7 @@ const IMPACTS = [
         bg: '#ECFDF5',
     },
     {
-        icon: '🧒',
+        icon: 'baby',
         stat: '5,000+',
         title: 'Children Injured Monthly',
         desc: 'School buses, cycles, and school routes are among the most dangerous due to unmaintained roads. Every child deserves a safe journey to school.',
@@ -73,10 +91,10 @@ const IMPACTS = [
 ];
 
 const STEPS = [
-    { num: '01', icon: '📸', title: 'Snap a Photo', desc: 'See a pothole or damaged road? Take a photo from your phone. No special equipment needed.' },
-    { num: '02', icon: '🤖', title: 'AI Detects & Rates', desc: 'Our AI instantly analyses the image, identifies the damage type, and calculates a severity score.' },
-    { num: '03', icon: '📍', title: 'Auto-Tagged & Routed', desc: 'Your complaint is GPS-tagged and automatically routed to the correct government officer for your area.' },
-    { num: '04', icon: '✅', title: 'Track to Resolution', desc: 'Follow your complaint in real-time. Get updates as the team is assigned and the repair is completed.' },
+    { num: '01', icon: 'camera', title: 'Snap a Photo', desc: 'See a pothole or damaged road? Take a photo from your phone. No special equipment needed.' },
+    { num: '02', icon: 'cpu', title: 'AI Detects & Rates', desc: 'Our AI instantly analyses the image, identifies the damage type, and calculates a severity score.' },
+    { num: '03', icon: 'mapPin', title: 'Auto-Tagged & Routed', desc: 'Your complaint is GPS-tagged and automatically routed to the correct government officer for your area.' },
+    { num: '04', icon: 'checkCircle', title: 'Track to Resolution', desc: 'Follow your complaint in real-time. Get updates as the team is assigned and the repair is completed.' },
 ];
 
 const TESTIMONIALS = [
@@ -84,6 +102,22 @@ const TESTIMONIALS = [
     { quote: 'My daughter was injured due to a broken road. Now I use RoadGuard AI to make sure no other family goes through the same.', name: 'Priya M.', city: 'Bengaluru' },
     { quote: 'Finally a system where officials have to be accountable. The transparency is what I love most.', name: 'Ravi K.', city: 'Chennai' },
 ];
+
+const IMPACT_ICONS: Record<string, React.ComponentType<any>> = {
+    skull: Skull,
+    car: Car,
+    rupee: IndianRupee,
+    clock: Clock,
+    hospital: Hospital,
+    baby: Baby
+};
+
+const STEP_ICONS: Record<string, React.ComponentType<any>> = {
+    camera: Camera,
+    cpu: Cpu,
+    mapPin: MapPin,
+    checkCircle: CheckCircle2
+};
 
 export default function LandingPage() {
     const [slide, setSlide] = useState(0);
@@ -104,7 +138,7 @@ export default function LandingPage() {
     }, []);
 
     return (
-        <div style={{ fontFamily: "'DM Sans', sans-serif", background: '#fff', color: '#0F172A', overflowX: 'hidden' }}>
+        <div style={{ fontFamily: "'Inter', sans-serif", background: '#fff', color: '#0F172A', overflowX: 'hidden' }}>
 
             {/* ── NAVBAR ──────────────────────────────────────────────── */}
             <nav style={{
@@ -115,14 +149,14 @@ export default function LandingPage() {
                 borderBottom: '1px solid #F1F5F9',
                 boxShadow: '0 2px 20px rgba(0,0,0,0.06)',
             }}>
-                <span style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: '1.15rem', display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontSize: '1.3rem' }}>🛡️</span>
+                <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: '1.15rem', display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <Shield size={20} style={{ color: '#FF5C00' }} />
                     RoadGuard <span style={{ color: '#FF5C00' }}>AI</span>
                 </span>
                 <div style={{ display: 'flex', gap: 10 }}>
                     <button onClick={() => navigate('/login')} style={{
                         padding: '8px 20px', borderRadius: 8, border: '1.5px solid #E2E8F0',
-                        background: 'transparent', color: '#0F172A', fontFamily: 'Syne', fontWeight: 700,
+                        background: 'transparent', color: '#0F172A', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700,
                         fontSize: '0.85rem', cursor: 'pointer', transition: 'all 0.2s',
                     }}
                         onMouseOver={e => { (e.target as HTMLElement).style.borderColor = '#FF5C00'; (e.target as HTMLElement).style.color = '#FF5C00'; }}
@@ -130,13 +164,17 @@ export default function LandingPage() {
                     >Official Portal</button>
                     <button onClick={() => navigate('/login')} style={{
                         padding: '8px 22px', borderRadius: 8, border: 'none',
-                        background: '#FF5C00', color: '#fff', fontFamily: 'Syne', fontWeight: 700,
+                        background: '#FF5C00', color: '#fff', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700,
                         fontSize: '0.85rem', cursor: 'pointer', transition: 'all 0.2s',
                         boxShadow: '0 4px 12px rgba(255,92,0,0.3)',
+                        display: 'flex', alignItems: 'center', gap: 6
                     }}
                         onMouseOver={e => { (e.target as HTMLElement).style.background = '#E84E00'; (e.target as HTMLElement).style.transform = 'translateY(-1px)'; }}
                         onMouseOut={e => { (e.target as HTMLElement).style.background = '#FF5C00'; (e.target as HTMLElement).style.transform = 'translateY(0)'; }}
-                    >Report Now →</button>
+                    >
+                        <span>Report Now</span>
+                        <ArrowRight size={14} />
+                    </button>
                 </div>
             </nav>
 
@@ -181,7 +219,7 @@ export default function LandingPage() {
                     {/* Main tagline */}
                     <h1 style={{
                         fontSize: 'clamp(2.6rem, 6vw, 5.5rem)',
-                        fontFamily: 'Syne', fontWeight: 800, color: '#fff',
+                        fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, color: '#fff',
                         lineHeight: 1.1, marginBottom: 18, maxWidth: 860,
                         textShadow: '0 4px 30px rgba(0,0,0,0.6)',
                     }}>
@@ -209,16 +247,20 @@ export default function LandingPage() {
                     <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center' }}>
                         <button onClick={() => navigate('/login')} style={{
                             padding: '14px 36px', borderRadius: 10, border: 'none',
-                            background: '#FF5C00', color: '#fff', fontFamily: 'Syne', fontWeight: 800,
+                            background: '#FF5C00', color: '#fff', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800,
                             fontSize: '1rem', cursor: 'pointer',
                             boxShadow: '0 8px 30px rgba(255,92,0,0.5)',
                             transition: 'all 0.25s', animation: 'heroPulse 2.5s ease-in-out infinite',
-                        }}>📸 Report Road Damage Now</button>
+                            display: 'flex', alignItems: 'center', gap: 8
+                        }}>
+                            <Camera size={18} />
+                            <span>Report Road Damage Now</span>
+                        </button>
                         <button onClick={() => document.getElementById('impact')?.scrollIntoView({ behavior: 'smooth' })} style={{
                             padding: '14px 36px', borderRadius: 10,
                             border: '2px solid rgba(255,255,255,0.6)',
                             background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)',
-                            color: '#fff', fontFamily: 'Syne', fontWeight: 700,
+                            color: '#fff', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700,
                             fontSize: '1rem', cursor: 'pointer', transition: 'all 0.25s',
                         }}>See the Impact ↓</button>
                     </div>
@@ -255,7 +297,7 @@ export default function LandingPage() {
                     { num: '72 hrs', label: 'Avg Response Without Technology' },
                 ].map((s, i) => (
                     <div key={i} style={{ textAlign: 'center', color: '#fff', minWidth: 140 }}>
-                        <div style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: '2.2rem', lineHeight: 1 }}>{s.num}</div>
+                        <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: '2.2rem', lineHeight: 1 }}>{s.num}</div>
                         <div style={{ fontSize: '0.82rem', opacity: 0.9, marginTop: 4 }}>{s.label}</div>
                     </div>
                 ))}
@@ -264,10 +306,11 @@ export default function LandingPage() {
             {/* ── IMPACT SECTION ──────────────────────────────────────── */}
             <section id="impact" style={{ padding: '100px 60px', background: '#fff', maxWidth: 1280, margin: '0 auto' }}>
                 <div style={{ textAlign: 'center', marginBottom: 60 }}>
-                    <div style={{ display: 'inline-block', background: '#FEF2F2', border: '1px solid #FECACA', borderRadius: 30, padding: '5px 18px', marginBottom: 16 }}>
-                        <span style={{ color: '#EF4444', fontFamily: 'Syne', fontWeight: 700, fontSize: '0.78rem', letterSpacing: '0.1em' }}>⚠️ THE HARSH REALITY</span>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#FEF2F2', border: '1px solid #FECACA', borderRadius: 30, padding: '5px 18px', marginBottom: 16 }}>
+                        <AlertTriangle size={14} color="#EF4444" />
+                        <span style={{ color: '#EF4444', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.78rem', letterSpacing: '0.1em' }}>THE HARSH REALITY</span>
                     </div>
-                    <h2 style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.15, marginBottom: 16 }}>
+                    <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.15, marginBottom: 16 }}>
                         What Happens When<br /><span style={{ color: '#FF5C00' }}>Roads Are Neglected?</span>
                     </h2>
                     <p style={{ color: '#64748B', fontSize: '1.05rem', maxWidth: 580, margin: '0 auto' }}>
@@ -288,9 +331,14 @@ export default function LandingPage() {
                             onMouseOver={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-6px)'; (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 50px ${imp.color}22`; }}
                             onMouseOut={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none'; }}
                         >
-                            <div style={{ fontSize: '2.5rem', marginBottom: 14 }}>{imp.icon}</div>
-                            <div style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: '2.2rem', color: imp.color, marginBottom: 4 }}>{imp.stat}</div>
-                            <h3 style={{ fontFamily: 'Syne', fontWeight: 700, fontSize: '1.05rem', marginBottom: 12, color: '#0F172A' }}>{imp.title}</h3>
+                            <div style={{ marginBottom: 18, color: imp.color }}>
+                                {(() => {
+                                    const IconComponent = IMPACT_ICONS[imp.icon];
+                                    return IconComponent ? <IconComponent size={32} /> : null;
+                                })()}
+                            </div>
+                            <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: '2.2rem', color: imp.color, marginBottom: 4 }}>{imp.stat}</div>
+                            <h3 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '1.05rem', marginBottom: 12, color: '#0F172A' }}>{imp.title}</h3>
                             <p style={{ color: '#64748B', fontSize: '0.88rem', lineHeight: 1.7 }}>{imp.desc}</p>
                         </div>
                     ))}
@@ -304,10 +352,11 @@ export default function LandingPage() {
             }}>
                 <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
                     <div>
-                        <div style={{ display: 'inline-block', background: '#FFF7ED', border: '1px solid #FED7AA', borderRadius: 30, padding: '5px 18px', marginBottom: 20 }}>
-                            <span style={{ color: '#FF5C00', fontFamily: 'Syne', fontWeight: 700, fontSize: '0.78rem', letterSpacing: '0.1em' }}>🔍 THE PROBLEM</span>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#FFF7ED', border: '1px solid #FED7AA', borderRadius: 30, padding: '5px 18px', marginBottom: 20 }}>
+                            <Search size={14} color="#FF5C00" />
+                            <span style={{ color: '#FF5C00', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.78rem', letterSpacing: '0.1em' }}>THE PROBLEM</span>
                         </div>
-                        <h2 style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', marginBottom: 20, lineHeight: 1.2 }}>
+                        <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', marginBottom: 20, lineHeight: 1.2 }}>
                             Roads That Should<br /><span style={{ color: '#EF4444' }}>Never Exist</span>
                         </h2>
                         <p style={{ color: '#64748B', fontSize: '1rem', lineHeight: 1.8, marginBottom: 20 }}>
@@ -321,29 +370,31 @@ export default function LandingPage() {
                         </p>
                         <button onClick={() => navigate('/login')} style={{
                             padding: '13px 30px', borderRadius: 10, border: 'none',
-                            background: '#FF5C00', color: '#fff', fontFamily: 'Syne', fontWeight: 700,
+                            background: '#FF5C00', color: '#fff', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700,
                             fontSize: '0.95rem', cursor: 'pointer', boxShadow: '0 6px 20px rgba(255,92,0,0.3)',
                             transition: 'all 0.25s',
+                            display: 'inline-flex', alignItems: 'center', gap: 6
                         }}>
-                            Start Reporting →
+                            <span>Start Reporting</span>
+                            <ArrowRight size={16} />
                         </button>
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, borderRadius: 20, overflow: 'hidden' }}>
                         <img
-                            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=85"
-                            alt="Pothole on road"
+                            src="https://images.unsplash.com/photo-1515162305285-0293e4767cc2?w=600&q=85"
+                            alt="Cracked road"
                             style={{ width: '100%', height: 200, objectFit: 'cover', borderRadius: 12, gridRow: 'span 2' }}
                             onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
                         />
                         <img
-                            src="https://images.unsplash.com/photo-1611348586804-61bf6c080437?w=400&q=85"
-                            alt="Cracked road"
+                            src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=400&q=85"
+                            alt="Pothole on road"
                             style={{ width: '100%', height: 95, objectFit: 'cover', borderRadius: 12 }}
                             onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
                         />
                         <img
-                            src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&q=85"
-                            alt="Night road"
+                            src="https://images.unsplash.com/photo-1621293954908-907141447fcb?w=400&q=85"
+                            alt="Asphalt road texture"
                             style={{ width: '100%', height: 95, objectFit: 'cover', borderRadius: 12 }}
                             onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
                         />
@@ -355,10 +406,11 @@ export default function LandingPage() {
             <section style={{ padding: '100px 60px', background: '#fff' }}>
                 <div style={{ maxWidth: 1200, margin: '0 auto' }}>
                     <div style={{ textAlign: 'center', marginBottom: 60 }}>
-                        <div style={{ display: 'inline-block', background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: 30, padding: '5px 18px', marginBottom: 16 }}>
-                            <span style={{ color: '#16A34A', fontFamily: 'Syne', fontWeight: 700, fontSize: '0.78rem', letterSpacing: '0.1em' }}>✅ THE SOLUTION</span>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#F0FDF4', border: '1px solid #BBF7D0', borderRadius: 30, padding: '5px 18px', marginBottom: 16 }}>
+                            <CheckCircle2 size={14} color="#16A34A" />
+                            <span style={{ color: '#16A34A', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.78rem', letterSpacing: '0.1em' }}>THE SOLUTION</span>
                         </div>
-                        <h2 style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.15 }}>
+                        <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3rem)', lineHeight: 1.15 }}>
                             How <span style={{ color: '#FF5C00' }}>RoadGuard AI</span> Works
                         </h2>
                     </div>
@@ -372,13 +424,17 @@ export default function LandingPage() {
                                     background: i === 0 || i === 3 ? '#FF5C00' : '#fff',
                                     border: `3px solid ${i === 0 || i === 3 ? '#FF5C00' : '#E2E8F0'}`,
                                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    fontSize: '2rem', boxShadow: `0 8px 24px rgba(255,92,0,${i === 0 || i === 3 ? '0.3' : '0.1'})`,
+                                    boxShadow: `0 8px 24px rgba(255,92,0,${i === 0 || i === 3 ? '0.3' : '0.1'})`,
                                     transition: 'all 0.3s',
+                                    color: i === 0 || i === 3 ? '#fff' : '#FF5C00'
                                 }}>
-                                    {step.icon}
+                                    {(() => {
+                                        const IconComp = STEP_ICONS[step.icon];
+                                        return IconComp ? <IconComp size={32} /> : null;
+                                    })()}
                                 </div>
-                                <div style={{ fontFamily: 'Syne', fontWeight: 800, color: '#FF5C00', fontSize: '0.75rem', marginBottom: 6, letterSpacing: '0.1em' }}>STEP {step.num}</div>
-                                <h3 style={{ fontFamily: 'Syne', fontWeight: 700, fontSize: '1.05rem', marginBottom: 10 }}>{step.title}</h3>
+                                <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, color: '#FF5C00', fontSize: '0.75rem', marginBottom: 6, letterSpacing: '0.1em' }}>STEP {step.num}</div>
+                                <h3 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '1.05rem', marginBottom: 10 }}>{step.title}</h3>
                                 <p style={{ color: '#64748B', fontSize: '0.87rem', lineHeight: 1.7 }}>{step.desc}</p>
                             </div>
                         ))}
@@ -390,9 +446,11 @@ export default function LandingPage() {
             {/* ── REPORT CTA ───────────────────────────────────────────── */}
             <section style={{ background: '#fff', padding: '100px 24px', textAlign: 'center' }}>
                 <div style={{ maxWidth: 760, margin: '0 auto' }}>
-                    <div style={{ fontSize: '3rem', marginBottom: 20 }}>🛣️</div>
+                    <div style={{ display: 'flex', justifyContent: 'center', color: '#FF5C00', marginBottom: 20 }}>
+                        <Shield size={56} />
+                    </div>
                     <h2 style={{
-                        fontFamily: 'Syne', fontWeight: 800,
+                        fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800,
                         fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1,
                         marginBottom: 20,
                     }}>
@@ -411,27 +469,33 @@ export default function LandingPage() {
                                 padding: '7px 16px', borderRadius: 30,
                                 background: '#FFF7ED', border: '1px solid #FED7AA',
                                 color: '#C2410C', fontSize: '0.82rem', fontWeight: 600,
-                            }}>{f}</span>
+                                display: 'inline-flex', alignItems: 'center', gap: 4
+                            }}>
+                                <Check size={12} />
+                                <span>{f.replace('✓ ', '')}</span>
+                            </span>
                         ))}
                     </div>
 
                     <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
                         <button onClick={() => navigate('/login')} style={{
                             padding: '16px 44px', borderRadius: 12, border: 'none',
-                            background: '#FF5C00', color: '#fff', fontFamily: 'Syne', fontWeight: 800,
+                            background: '#FF5C00', color: '#fff', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800,
                             fontSize: '1.05rem', cursor: 'pointer',
                             boxShadow: '0 12px 36px rgba(255,92,0,0.4)',
                             transition: 'all 0.3s', animation: 'heroPulse 2.5s ease-in-out infinite',
+                            display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'center'
                         }}>
-                            📸 Report a Road Now — It's Free
+                            <Camera size={20} />
+                            <span>Report a Road Now — It's Free</span>
                         </button>
                         <button onClick={() => navigate('/login')} style={{
                             padding: '16px 36px', borderRadius: 12,
                             border: '2px solid #E2E8F0',
-                            background: '#fff', color: '#0F172A', fontFamily: 'Syne', fontWeight: 700,
+                            background: '#fff', color: '#0F172A', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700,
                             fontSize: '1.05rem', cursor: 'pointer', transition: 'all 0.25s',
                         }}>
-                            🏛 Official Portal
+                            Official Portal
                         </button>
                     </div>
                 </div>
@@ -443,10 +507,12 @@ export default function LandingPage() {
                 padding: '90px 60px', textAlign: 'center',
             }}>
                 <div style={{ maxWidth: 700, margin: '0 auto' }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: 24 }}>💬</div>
+                    <div style={{ display: 'flex', justifyContent: 'center', color: '#FF8040', marginBottom: 24 }}>
+                        <Quote size={40} />
+                    </div>
                     <div style={{ minHeight: 120, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                         <blockquote style={{
-                            fontFamily: 'Syne', fontWeight: 700, fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
+                            fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)',
                             color: '#fff', lineHeight: 1.5, marginBottom: 20, fontStyle: 'italic',
                             transition: 'opacity 0.4s',
                         }}>
@@ -478,8 +544,8 @@ export default function LandingPage() {
                 fontSize: '0.83rem',
             }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontSize: '1.2rem' }}>🛡️</span>
-                    <span style={{ color: '#fff', fontFamily: 'Syne', fontWeight: 800 }}>RoadGuard AI</span>
+                    <Shield size={18} style={{ color: '#fff' }} />
+                    <span style={{ color: '#fff', fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800 }}>RoadGuard AI</span>
                     <span style={{ marginLeft: 4 }}>— AI for Safer Indian Roads</span>
                 </div>
                 <div style={{ display: 'flex', gap: 24 }}>
@@ -491,7 +557,7 @@ export default function LandingPage() {
 
             {/* ── INLINE KEYFRAMES ────────────────────────────────────── */}
             <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
         @keyframes heroPulse {
           0%, 100% { box-shadow: 0 8px 30px rgba(255,92,0,0.4); }
           50% { box-shadow: 0 8px 40px rgba(255,92,0,0.7), 0 0 60px rgba(255,92,0,0.2); }

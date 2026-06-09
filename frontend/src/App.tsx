@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
+import { Loader2 } from 'lucide-react';
 import './styles/globals.css';
 
 const LandingPage = lazy(() => import('./pages/LandingPage'));
@@ -12,8 +13,9 @@ const OfficialDashboard = lazy(() => import('./pages/OfficialDashboard'));
 
 function Loader() {
   return (
-    <div style={{ background: 'var(--dark)', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ color: 'var(--orange)', fontFamily: 'Syne', fontSize: '1.2rem' }}>⏳ Loading RoadGuard AI...</div>
+    <div style={{ background: 'var(--dark)', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12 }}>
+      <Loader2 style={{ color: 'var(--orange)', animation: 'spin 1s linear infinite' }} size={32} />
+      <div style={{ color: 'var(--text)', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '1rem', fontWeight: 600 }}>Loading RoadGuard AI...</div>
     </div>
   );
 }

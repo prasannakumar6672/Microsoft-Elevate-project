@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* ── CSS Variables ────────────────────────────────────────────── */
 :root {
@@ -25,12 +25,12 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--dark);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   line-height: 1.6;
   overflow-x: hidden;
 }
-h1, h2, h3, h4 { font-family: 'Syne', sans-serif; font-weight: 800; line-height: 1.15; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; line-height: 1.15; }
 a { color: inherit; text-decoration: none; }
 button { cursor: pointer; border: none; outline: none; font-family: inherit; }
 img { max-width: 100%; }
@@ -78,7 +78,7 @@ img { max-width: 100%; }
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--orange);
   color: #fff;
-  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem;
   padding: 12px 28px; border-radius: 10px;
   transition: all 0.25s ease;
   border: 2px solid transparent;
@@ -92,7 +92,7 @@ img { max-width: 100%; }
   display: inline-flex; align-items: center; gap: 8px;
   background: transparent;
   color: var(--text);
-  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.95rem;
   padding: 12px 28px; border-radius: 10px;
   border: 1.5px solid var(--border);
   transition: all 0.25s ease;
@@ -138,7 +138,7 @@ select.input { cursor: pointer; }
 /* ── Badges ───────────────────────────────────────────────────── */
 .badge {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 0.72rem; font-weight: 700; font-family: 'Syne', sans-serif;
+  font-size: 0.72rem; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif;
   padding: 4px 10px; border-radius: 50px; letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -174,3 +174,38 @@ select.input { cursor: pointer; }
 ::-webkit-scrollbar-track { background: var(--dark2); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--orange); }
+
+/* ── Modern UI Trends (Glassmorphism & Glows) ────────────────── */
+.glass {
+  background: rgba(22, 22, 31, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.glass-glow-orange {
+  box-shadow: 0 8px 32px rgba(255, 92, 0, 0.08), inset 0 0 12px rgba(255, 92, 0, 0.04);
+}
+.glass-glow-blue {
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.08), inset 0 0 12px rgba(59, 130, 246, 0.04);
+}
+.mesh-bg {
+  position: relative;
+}
+.mesh-bg::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255, 92, 0, 0.05) 0%, transparent 70%);
+  top: -150px; right: -150px;
+  z-index: 0;
+  pointer-events: none;
+}
+.mesh-bg::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 70%);
+  bottom: -150px; left: -150px;
+  z-index: 0;
+  pointer-events: none;
+}

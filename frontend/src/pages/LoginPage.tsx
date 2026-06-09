@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Shield, User, Building2, Zap, ArrowRight } from 'lucide-react';
 
 export default function LoginPage() {
     const [tab, setTab] = useState<'citizen' | 'official'>('citizen');
@@ -45,8 +46,8 @@ export default function LoginPage() {
                 {/* Logo */}
                 <div style={{ textAlign: 'center', marginBottom: 32 }}>
                     <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                        <span style={{ fontSize: '1.8rem' }}>🛡️</span>
-                        <span style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: '1.4rem' }}>
+                        <Shield style={{ color: 'var(--orange)' }} size={28} />
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: '1.4rem', color: 'var(--text)' }}>
                             RoadGuard <span style={{ color: 'var(--orange)' }}>AI</span>
                         </span>
                     </Link>
@@ -66,17 +67,19 @@ export default function LoginPage() {
                         {(['citizen', 'official'] as const).map(t => (
                             <button key={t} onClick={() => setTab(t)} style={{
                                 flex: 1, padding: '10px', border: 'none', borderRadius: 7,
-                                fontFamily: 'Syne', fontWeight: 700, fontSize: '0.85rem',
+                                fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 700, fontSize: '0.85rem',
                                 cursor: 'pointer', transition: 'all 0.2s',
                                 background: tab === t ? 'var(--orange)' : 'transparent',
                                 color: tab === t ? '#fff' : 'var(--muted)',
+                                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
                             }}>
-                                {t === 'citizen' ? "👤 I'm a Citizen" : "🏛 I'm a Government Official"}
+                                {t === 'citizen' ? <User size={16} /> : <Building2 size={16} />}
+                                <span>{t === 'citizen' ? "I'm a Citizen" : "Official Portal"}</span>
                             </button>
                         ))}
                     </div>
 
-                    <h2 style={{ fontFamily: 'Syne', fontSize: '1.5rem', marginBottom: 6 }}>
+                    <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '1.5rem', marginBottom: 6 }}>
                         {tab === 'citizen' ? 'Citizen Login' : 'Official Login'}
                     </h2>
                     <p style={{ color: 'var(--muted)', fontSize: '0.85rem', marginBottom: 24 }}>
@@ -90,9 +93,11 @@ export default function LoginPage() {
                         width: '100%', marginBottom: 18, padding: '9px',
                         background: 'rgba(255,92,0,0.08)', border: '1px dashed rgba(255,92,0,0.3)',
                         borderRadius: 8, color: 'var(--orange)', fontSize: '0.8rem',
-                        fontFamily: 'DM Sans', cursor: 'pointer',
+                        fontFamily: "'Inter', sans-serif", cursor: 'pointer',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
                     }}>
-                        ⚡ Fill Demo Credentials
+                        <Zap size={14} />
+                        <span>Fill Demo Credentials</span>
                     </button>
 
                     <form onSubmit={handleLogin}>
@@ -119,8 +124,13 @@ export default function LoginPage() {
                                 color: 'var(--red)', fontSize: '0.85rem',
                             }}>{error}</div>
                         )}
-                        <button type="submit" className="btn-primary" disabled={loading} style={{ width: '100%', justifyContent: 'center', padding: 14 }}>
-                            {loading ? '⏳ Logging in...' : `Login as ${tab === 'citizen' ? 'Citizen' : 'Official'} →`}
+                        <button type="submit" className="btn-primary" disabled={loading} style={{ width: '100%', justifyContent: 'center', padding: 14, gap: 8 }}>
+                            {loading ? 'Logging in...' : (
+                                <>
+                                    <span>Login as {tab === 'citizen' ? 'Citizen' : 'Official'}</span>
+                                    <ArrowRight size={16} />
+                                </>
+                            )}
                         </button>
                     </form>
 

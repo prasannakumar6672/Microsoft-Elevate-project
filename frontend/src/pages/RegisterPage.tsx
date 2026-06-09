@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Shield, ArrowRight } from 'lucide-react';
 
 export default function RegisterPage() {
     const [form, setForm] = useState({ name: '', email: '', phone: '', password: '', city: '' });
@@ -37,8 +38,8 @@ export default function RegisterPage() {
             <div style={{ width: '100%', maxWidth: 440 }}>
                 <div style={{ textAlign: 'center', marginBottom: 28 }}>
                     <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                        <span style={{ fontSize: '1.8rem' }}>🛡️</span>
-                        <span style={{ fontFamily: 'Syne', fontWeight: 800, fontSize: '1.4rem' }}>RoadGuard <span style={{ color: 'var(--orange)' }}>AI</span></span>
+                        <Shield style={{ color: 'var(--orange)' }} size={28} />
+                        <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: '1.4rem', color: 'var(--text)' }}>RoadGuard <span style={{ color: 'var(--orange)' }}>AI</span></span>
                     </Link>
                 </div>
 
@@ -47,7 +48,7 @@ export default function RegisterPage() {
                     borderRadius: 20, padding: '36px 32px',
                     boxShadow: '0 24px 80px rgba(0,0,0,0.5)',
                 }}>
-                    <h2 style={{ fontFamily: 'Syne', fontSize: '1.5rem', marginBottom: 6 }}>Create Citizen Account</h2>
+                    <h2 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '1.5rem', marginBottom: 6 }}>Create Citizen Account</h2>
                     <p style={{ color: 'var(--muted)', fontSize: '0.85rem', marginBottom: 26 }}>
                         Join RoadGuard AI to report road damage in your city.
                     </p>
@@ -81,8 +82,13 @@ export default function RegisterPage() {
                                 color: 'var(--red)', fontSize: '0.85rem',
                             }}>{error}</div>
                         )}
-                        <button type="submit" className="btn-primary" disabled={loading} style={{ width: '100%', justifyContent: 'center', padding: 14, marginTop: 6 }}>
-                            {loading ? '⏳ Registering...' : 'Create Account →'}
+                        <button type="submit" className="btn-primary" disabled={loading} style={{ width: '100%', justifyContent: 'center', padding: 14, marginTop: 6, gap: 8 }}>
+                            {loading ? 'Registering...' : (
+                                <>
+                                    <span>Create Account</span>
+                                    <ArrowRight size={16} />
+                                </>
+                            )}
                         </button>
                     </form>
 
