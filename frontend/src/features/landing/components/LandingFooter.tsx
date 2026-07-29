@@ -16,7 +16,7 @@ export function LandingFooter() {
     >
       <AppLogo size={20} />
       <div style={{ color: 'var(--muted)', fontSize: '0.82rem' }}>
-        © {new Date().getFullYear()} RoadGuard AI Systems • Telangana Municipal Governance Initiative
+        © {new Date().getFullYear()} RoadGuard AI Systems • AI Road Damage & Civic Complaint Platform
       </div>
     </footer>
   );
