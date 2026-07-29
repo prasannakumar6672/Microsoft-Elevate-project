@@ -1,0 +1,33 @@
+.input {
+  width: 100%;
+  background: var(--card2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--orange);
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.select {
+  cursor: pointer;
+}
+
+.hasError {
+  border-color: var(--red) !important;
+}

@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.icon {
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.message {
+  color: var(--muted);
+  font-size: 0.88rem;
+  max-width: 400px;
+  margin-bottom: 16px;
+}

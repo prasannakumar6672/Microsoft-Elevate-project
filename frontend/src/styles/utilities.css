@@ -1,0 +1,80 @@
+/* ── Utility Classes ─────────────────────────────────────────── */
+
+/* Accessibility */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* Layout Helpers */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Text */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Animation Utilities */
+.fade-up   { animation: fadeUp 0.6s ease forwards; }
+.fade-in   { animation: fadeIn 0.3s ease forwards; }
+.float-anim { animation: float 4s ease-in-out infinite; }
+.glow-pulse { animation: glowPulse 2s ease-in-out infinite; }
+.spin-anim  { animation: spin 1s linear infinite; }
+
+/* Glassmorphism */
+.glass {
+  background: rgba(22, 22, 31, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-glow-orange {
+  box-shadow: 0 8px 32px rgba(255, 92, 0, 0.08),
+              inset 0 0 12px rgba(255, 92, 0, 0.04);
+}
+
+.glass-glow-blue {
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.08),
+              inset 0 0 12px rgba(59, 130, 246, 0.04);
+}
+
+/* Mesh Background */
+.mesh-bg { position: relative; }
+.mesh-bg::before {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(255, 92, 0, 0.05) 0%, transparent 70%);
+  top: -150px; right: -150px;
+  z-index: 0;
+  pointer-events: none;
+}
+.mesh-bg::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.04) 0%, transparent 70%);
+  bottom: -150px; left: -150px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--orange); }

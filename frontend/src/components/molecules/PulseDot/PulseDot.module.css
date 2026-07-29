@@ -1,0 +1,22 @@
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.green {
+  background: var(--green);
+  animation: pulseDot 1.8s ease-in-out infinite;
+}
+
+.red {
+  background: var(--red);
+  animation: pulseDotRed 1.2s ease-in-out infinite;
+}
+
+.orange {
+  background: var(--orange);
+  animation: pulseDotOrange 1.5s ease-in-out infinite;
+}

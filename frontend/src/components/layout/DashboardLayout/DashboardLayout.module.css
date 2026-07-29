@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--dark);
+}
+
+.main {
+  flex: 1;
+  height: var(--panel-height);
+  margin: var(--sidebar-margin) var(--sidebar-margin) var(--sidebar-margin) 0;
+  border-radius: var(--radius);
+  padding: var(--main-padding);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  z-index: 1;
+}

@@ -1,0 +1,23 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.icon {
+  color: var(--orange);
+  filter: drop-shadow(0 0 8px rgba(255, 92, 0, 0.5));
+}
+
+.text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.accent {
+  color: var(--orange);
+}

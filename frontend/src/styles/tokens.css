@@ -1,0 +1,63 @@
+/* ── Design Tokens ────────────────────────────────────────────────
+   Single source of truth for all design values.
+   To change brand color: update --orange here — that's all.
+   ─────────────────────────────────────────────────────────────── */
+:root {
+  /* Brand Colors */
+  --orange:       #FF5C00;
+  --orange-light: #FF8040;
+
+  /* Semantic Colors */
+  --green:  #22C55E;
+  --yellow: #F59E0B;
+  --red:    #EF4444;
+  --blue:   #3B82F6;
+
+  /* Background Scale */
+  --dark:  #0A0A0F;
+  --dark2: #111118;
+  --card:  #16161F;
+  --card2: #1E1E2A;
+
+  /* Typography */
+  --text:  #F0EFE8;
+  --muted: #7A7A8C;
+
+  /* Borders */
+  --border: rgba(255, 255, 255, 0.08);
+
+  /* Border Radii */
+  --radius:    16px;
+  --radius-sm: 8px;
+  --radius-xs: 4px;
+
+  /* Spacing Scale */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Layout Tokens */
+  --sidebar-width:   280px;
+  --sidebar-margin:  16px;
+  --main-padding:    36px 32px;
+  --panel-height:    calc(100vh - 32px);
+
+  /* Shadow Scale */
+  --shadow-sm:  0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-md:  0 8px 24px rgba(0, 0, 0, 0.2);
+  --shadow-lg:  0 12px 40px rgba(0, 0, 0, 0.4);
+  --shadow-orange-sm: 0 4px 16px rgba(255, 92, 0, 0.25);
+  --shadow-orange-md: 0 8px 24px rgba(255, 92, 0, 0.35);
+
+  /* Z-Index Scale */
+  --z-base:    1;
+  --z-sidebar: 5;
+  --z-modal:   100;
+  --z-toast:   200;
+}
